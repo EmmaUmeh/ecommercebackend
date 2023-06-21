@@ -1,15 +1,27 @@
 import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+import * as mongoose from 'mongoose'
+import "dotenv/config";
+const dbconfigurl = require('./config/db.config')
 
-dotenv.config();
+const login = require('./routes/login')
 
-const app: Express = express();
-const port = process.env.PORT || 3001;
+const app : Express = express();
+const port = process.env.PORT;
+app.use(express.json())
+
+const connectDB = async () => {
+  const connection = await mongoose.connect(dbconfigurl.url);
+  console.log(`Mongo db connected:`, connection.connection.host);
+};
+connectDB();
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
+  res.send("Hello")
+})
+
+// Import the routes
+app.use('/', login)
 
 app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-});
+  console.log(`App listening at http://localhost:${port}`)
+})
