@@ -1,26 +1,26 @@
 import express, { Express, Request, Response } from 'express';
 import * as mongoose from 'mongoose'
-import "dotenv/config";
-const dbconfigurl = require('./config/db.config')
+import dotenv from "dotenv";
+const app: Express = express();
+import { login } from './controllers/User';
 
-const login = require('./routes/login')
+dotenv.config();
 
-const app : Express = express();
-const port = process.env.PORT;
 app.use(express.json())
 
-const connectDB = async () => {
-  const connection = await mongoose.connect(dbconfigurl.url);
-  console.log(`Mongo db connected:`, connection.connection.host);
-};
-connectDB();
+const port = process.env.PORT || 4000;
+mongoose.connect('mongodb://localhost:27017/ecommercedb', {})
+
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((error) => console.error('MongoDB connection error:', error));
+
 
 app.get('/', (req: Request, res: Response) => {
-  res.send("Hello")
+  res.send("Building an ecommerce api")
 })
 
 // Import the routes
-app.use('/', login)
+app.use('/api', login)
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)

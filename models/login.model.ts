@@ -1,8 +1,22 @@
-import mongoose from 'mongoose'
+import mongoose, {Document} from 'mongoose'
 
-const LoginSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+interface UserInfo extends Document {
+    username: string,
+    password: string,
+}
+
+const UserSchema = new mongoose.Schema({
+    
+    username: { 
+        type: String, 
+        required: true, 
+        unique: true 
+    },
+    
+  password: { 
+    type: String, 
+    required: true 
+},
 })
 
-module.exports = mongoose.model('User', LoginSchema)
+module.exports = mongoose.model<UserInfo>('User', UserSchema)
