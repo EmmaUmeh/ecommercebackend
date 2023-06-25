@@ -11,10 +11,10 @@ export const products = (req:Request, res:Response) => {
         { description: { $regex: query, $options: 'i' } },
       ],
     });
-    
+
     res.json(products);
   } catch (error) {
-    console.error('Error searching for products:', error);
+    console.error('Error while fetching products:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
