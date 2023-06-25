@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 const app: Express = express();
 import { login } from './controllers/User';
 import { register } from './controllers/RegisterUser';
+import { products } from './controllers/products';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.get('/', (req: Request, res: Response) => {
 // Import the routes
 app.use('/api', login);
 app.use('/api', register)
+app.use('/api', products)
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
