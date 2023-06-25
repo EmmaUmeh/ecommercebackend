@@ -1,13 +1,13 @@
 import mongoose, {Document} from 'mongoose'
 
 interface UserInfo extends Document {
-    username: string,
+    email: string,
     password: string,
 }
 
 const UserSchema = new mongoose.Schema({
     
-    username: { 
+    email: { 
         type: String, 
         required: true, 
         unique: true 
@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     
   password: { 
     type: String, 
-    required: true 
+    required: true,
 },
 })
 

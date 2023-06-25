@@ -31,6 +31,7 @@ const mongoose = __importStar(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const app = (0, express_1.default)();
 const User_1 = require("./controllers/User");
+const RegisterUser_1 = require("./controllers/RegisterUser");
 dotenv_1.default.config();
 app.use(express_1.default.json());
 const port = process.env.PORT || 4000;
@@ -42,6 +43,7 @@ app.get('/', (req, res) => {
 });
 // Import the routes
 app.use('/api', User_1.login);
+app.use('/api', RegisterUser_1.register);
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
 });
