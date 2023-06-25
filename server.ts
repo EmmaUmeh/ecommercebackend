@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 const app: Express = express();
 import { login } from './controllers/User';
 import { register } from './controllers/RegisterUser';
-import { products } from './controllers/products';
+import { products } from './controllers/Products';
 
 dotenv.config();
 
