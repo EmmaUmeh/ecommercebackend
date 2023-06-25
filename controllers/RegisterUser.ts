@@ -32,7 +32,7 @@ export const register = async (req: Request, res: Response)  => {
   
       res.status(201).json({ message: `Welcome ${name}` });
     } catch (error) {
-      console.error('Error registering user:', error);
+      console.error('Error while registering user:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
 }
